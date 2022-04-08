@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <div class="ion-padding" id="container">
+    <ion-img slot="end" class="ion-padding logo" src="./assets/img/CityCare.png" alt=""></ion-img>
+    <strong>CityCare</strong>
+    <p> La forma más simple de mejorar tu ciudad</p>
+
+    <ion-list class="ion-padding" class="inputs">
+
+      <ion-item >
+        <ion-label>Email</ion-label>
+        <ion-input name="email"
+                    type="email"
+                    required></ion-input>
+      </ion-item>
+
+      <ion-item >
+        <ion-label>Password</ion-label>
+        <ion-input name="password"
+                    type="password"
+                    required></ion-input>
+      </ion-item>
+      <ion-row >
+        <ion-col size="6">
+          <ion-button (click)="onClick()" expand="block"  shape="round" disabled>
+            Login
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-button  expand="block"  shape="round">
+            Registrarse
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-list>
+  </div>
+
+</ion-content>
