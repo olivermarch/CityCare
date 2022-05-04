@@ -18,6 +18,7 @@ export interface Incidencia {
 export interface Usuario {
   _id?: string;
   nombre?: string;
+  apellidos?: string;
   avatar?: string;
   email?: string;
   password?: string;

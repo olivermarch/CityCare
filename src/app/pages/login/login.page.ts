@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, ModalController, NavController, IonRouterOutlet } from '@ionic/angular';
 import { UserService } from '../../services/user.service';
+import { Usuario } from '../../interfaces/interfaces';
+import { RegistrationPage } from '../registration/registration.page';
 
 @Component({
   selector: 'app-login',
@@ -10,14 +12,17 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginPage implements OnInit {
 
-
-
   loginUser = {
     email: 'oliver5@oliver.es',
     password: '123456'
   };
 
-  constructor(private userService: UserService, private navigatorControler: NavController, private alertController: AlertController) {
+  constructor(
+    private userService: UserService,
+    private navigatorControler: NavController,
+    private alertController: AlertController,
+    private modalController: ModalController,
+    private routerOutlet: IonRouterOutlet) {
    }
 
   ngOnInit() {}
@@ -53,7 +58,15 @@ export class LoginPage implements OnInit {
 
 }
 
-onClick(){
-  this.presentAlert();
+async showRegistrationPage(){
+
+  const modal = await this.modalController.create({
+    component: RegistrationPage,
+    cssClass: 'my-custom-class',
+    mode: 'ios',
+    swipeToClose: true,
+    presentingElement: this.routerOutlet.nativeEl
+  });
+  await modal.present();
 }
 }

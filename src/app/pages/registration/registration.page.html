@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Registro de Usuario</ion-title>
+    <ion-button (click)="closeModal()"
+                slot="end"
+                color="danger"
+                size="small">
+      <ion-icon slot="icon-only"
+                name="close"></ion-icon>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="light">
+
+  <div class="ion-padding" id="container">
+    <ion-img slot="end" class="ion-padding logo" src="./assets/img/CityCare.png" alt=""></ion-img>
+    <strong>CityCare</strong>
+    <p>Registrate para poder reportar incidencias urbanísticas a tu Ayuntamiento</p>
+
+    <form (ngSubmit)="registerUser(fNewUser)" #fNewUser="ngForm">
+
+        <ion-list class="ion-padding" class="inputs" shape="round">
+
+          <ion-item >
+            <ion-label>Nombre</ion-label>
+            <ion-input name="name"
+                       type="name"
+                       [(ngModel)]="newUser.nombre"
+                       required></ion-input>
+          </ion-item>
+
+          <ion-item >
+            <ion-label>Apellidos</ion-label>
+            <ion-input name="family-name"
+                       type="family-name"
+                       [(ngModel)]="newUser.apellidos"
+                       required></ion-input>
+          </ion-item>
+
+          <ion-item >
+            <ion-label>Email</ion-label>
+            <ion-input name="email"
+                       type="email"
+                       [(ngModel)]="newUser.email"
+                       required></ion-input>
+          </ion-item>
+
+          <ion-item >
+            <ion-label>Password</ion-label>
+            <ion-input name="password"
+                       type="password"
+                       [(ngModel)]="newUser.password"
+                       required></ion-input>
+          </ion-item>
+
+          <ion-item >
+            <ion-label>Municipio</ion-label>
+            <ion-input name="municipio"
+                       type="text"
+                       [(ngModel)]="newUser.municipio"
+                       required></ion-input>
+          </ion-item>
+
+        </ion-list>
+
+        <ion-item color="light">
+          <ion-label>Acepto la politica de privacidad</ion-label>
+          <ion-checkbox slot="start" required></ion-checkbox>
+        </ion-item>
+
+        <ion-button type="submit" expand="block"  shape="round" >
+          Registrarse
+        </ion-button>
+
+  </form>
+  </div>
+
+</ion-content>
