@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AlertController, NavController } from '@ionic/angular';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -9,22 +10,50 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginPage implements OnInit {
 
+
+
   loginUser = {
-    email: 'oliver1@oliver.es',
+    email: 'oliver5@oliver.es',
     password: '123456'
   };
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private navigatorControler: NavController, private alertController: AlertController) {
+   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+   async loger(fLogin: NgForm){
+
+    if(fLogin.invalid){
+      return;
+    }
+
+    const isOkLogin = await this.userService.login(this.loginUser.email, this.loginUser.password);
+
+    if (isOkLogin) {
+
+      console.log('esta bien');
+     this.navigatorControler.navigateRoot('/home', {animated: true});
+    }else{
+      this.presentAlert();
+    }
   }
 
-  loger(fLogin: NgForm){
 
-    if(fLogin.invalid){return;}
+  //Alerta para el fallo de usuario
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Atención',
+      message: 'Usuario o contraseña incorrectos',
+      buttons: ['OK']
+    });
 
-    this.userService.login(this.loginUser.email, this.loginUser.password);
+    await alert.present();
 
-  }
+}
 
+onClick(){
+  this.presentAlert();
+}
 }

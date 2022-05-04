@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Incidencia } from 'src/app/interfaces/interfaces';
 import { IncidenciasService } from '../../services/incidencias.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-incidencias',
@@ -11,7 +12,9 @@ export class IncidenciasPage implements OnInit {
 
   incidencias: Incidencia[] = [];
 
-  constructor(private incidenciasService: IncidenciasService) { }
+  constructor(private incidenciasService: IncidenciasService) {
+
+   }
 
   ngOnInit() {
 
@@ -20,4 +23,6 @@ export class IncidenciasPage implements OnInit {
        this.incidencias.push(...response.incidencias);
     });
   }
+
+
 }
