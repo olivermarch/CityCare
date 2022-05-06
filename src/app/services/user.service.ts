@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../../environments/environment';
 import { Usuario } from '../interfaces/interfaces';
+import { NavController } from '@ionic/angular';
 
 const URL =  environment.url;
 
@@ -17,8 +18,9 @@ interface ResponseLogin {
 export class UserService {
 
   token: string = null;
+  private user: Usuario ={};
 
-  constructor(private storage: Storage, private httpClient: HttpClient) {
+  constructor(private storage: Storage, private httpClient: HttpClient, private navController: NavController) {
 
     this.storage.create();
   }
@@ -69,8 +71,43 @@ export class UserService {
           resolve(false);
         }
       });
-
     });
+  }
 
+  getUser(){
+    return {...this.user};
+  }
+
+  async isTokenOk(): Promise<boolean>{
+
+    await this.loadCredentials();
+
+    if( !this.token){
+      this.navController.navigateRoot('/login');
+      return Promise.resolve(false);
+    }
+
+    return new Promise<boolean> (resolve => {
+      const headers = new HttpHeaders({
+        'x-token' : this.token
+      });
+
+      this.httpClient.get(`${URL}/user`, {headers}).subscribe( response =>{
+
+        // eslint-disable-next-line @typescript-eslint/dot-notation
+        if (response['ok']) {
+          // eslint-disable-next-line @typescript-eslint/dot-notation
+          this.user = response['user'];
+          resolve(true);
+        }else{
+          this.navController.navigateRoot('/login');
+          resolve(false);
+        }
+      });
+    });
+  }
+
+  async loadCredentials(){
+    this.token = await this.storage.get('token') || null;
   }
 }

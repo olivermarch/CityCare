@@ -8,9 +8,16 @@
   transform: translateY(-50%);
 }
 
-#container strong {
+strong {
   font-size: 20px;
   line-height: 26px;
+  text-align: center;
+}
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 26px;
+  text-align: center;
 }
 
 #container p {
@@ -22,4 +29,8 @@
 
 #container a {
   text-decoration: none;
+}
+
+#content ion-label{
+  font-weight: 100;
 }

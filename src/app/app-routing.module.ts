@@ -1,10 +1,12 @@
+import { UserGuard } from './services/user.guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canLoad: [UserGuard]
   },
   {
     path: '',
@@ -17,11 +19,17 @@ const routes: Routes = [
   },
   {
     path: 'incidencias',
-    loadChildren: () => import('./pages/incidencias/incidencias.module').then( m => m.IncidenciasPageModule)
+    loadChildren: () => import('./pages/incidencias/incidencias.module').then( m => m.IncidenciasPageModule),
+    canLoad: [UserGuard]
   },
   {
     path: 'registration',
     loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule)
+  },
+  {
+    path: 'crear-incidencia',
+    loadChildren: () => import('./pages/crear-incidencia/crear-incidencia.module').then( m => m.CrearIncidenciaPageModule),
+    canLoad: [UserGuard]
   }
 ];
 

@@ -3,6 +3,7 @@ import { ModalController, ToastController, NavController } from '@ionic/angular'
 import { Usuario } from 'src/app/interfaces/interfaces';
 import { UserService } from '../../services/user.service';
 import { NgForm } from '@angular/forms';
+import { PRIMARY_OUTLET } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -49,7 +50,11 @@ export class RegistrationPage implements OnInit {
   async presentToast(messageToShow: string) {
     const toast = await this.toastController.create({
       message: messageToShow,
-      duration: 4000
+      animated: true,
+      color: PRIMARY_OUTLET,
+      cssClass: 'toastRegistration',
+      icon: 'information-circle',
+      duration: 5000
     });
     toast.present();
   }

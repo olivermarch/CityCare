@@ -1,6 +1,6 @@
 <app-header titulo="CityCare"></app-header>
 
-<ion-content [fullscreen]="true" color="light">
+<ion-content id="content" [fullscreen]="true" color="light">
 
   <ion-list>
     <ion-item>
@@ -12,6 +12,45 @@
       <ion-label>Bienvenido, Oliver March</ion-label>
     </ion-item>
   </ion-list>
+
+  <ion-row>
+    <ion-col size="6">
+
+      <ion-card color="warning" class="card-incidencia" routerLink="/crear-incidencia" >
+        <ion-card-header>
+          <ion-card-subtitle class="ion-text-center">Crear incidencia</ion-card-subtitle>
+          <ion-card-content class="ion-text-center">
+
+            <ion-icon size="large"
+                      slot="icon-only"
+                      class="icon-incidencia"
+                      name="camera-outline"></ion-icon>
+          </ion-card-content>
+        </ion-card-header>
+
+      </ion-card>
+    </ion-col>
+    <ion-col size="6">
+
+
+      <ion-card color="dark" class="card-incidencia" routerLink="/incidencias">
+        <ion-card-header>
+          <ion-card-subtitle class="ion-text-center">Ver <br>Incidencias</ion-card-subtitle>
+          <ion-card-content class="ion-text-center">
+
+            <ion-icon size="large"
+                      slot="icon-only"
+                      class="icon-incidencia"
+                      name="construct-outline"></ion-icon>
+          </ion-card-content>
+        </ion-card-header>
+
+      </ion-card>
+
+    </ion-col>
+  </ion-row>
+
+    <h1>Mis Incidencias</h1>
 
   <ion-card>
     <ion-item color="secondary">
@@ -50,13 +89,5 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-
-  <!-- <div id="container">
-
-
-    <strong>CityCare</strong>
-    <p> Cuida tu ciudad </p>
-  </div> -->
-
 
 </ion-content>
