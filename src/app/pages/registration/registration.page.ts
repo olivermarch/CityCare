@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController, NavController } from '@ionic/angular';
-import { Usuario } from 'src/app/interfaces/interfaces';
+import { Municipio, Usuario } from 'src/app/interfaces/interfaces';
 import { UserService } from '../../services/user.service';
 import { NgForm } from '@angular/forms';
 import { PRIMARY_OUTLET } from '@angular/router';
+import { DataService } from '../../services/data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-registration',
@@ -12,24 +14,30 @@ import { PRIMARY_OUTLET } from '@angular/router';
 })
 export class RegistrationPage implements OnInit {
 
+  municipios: Observable<Municipio[]>;
+
   newUser: Usuario = {
-    email: 'jonathan@gmail.com',
-    password: '123456',
-    nombre: 'Jonathan',
-    apellidos: 'March',
-    municipio: 'La Laguna'
+    email: '',
+    password: '',
+    nombre: '',
+    apellidos: '',
+    municipio: ''
   };
 
   constructor(
     private modalController: ModalController,
     private userService: UserService,
     private toastController: ToastController,
-    private navController: NavController) { }
+    private navController: NavController,
+    private dataService: DataService) { }
 
   ngOnInit() {
+    this.municipios = this.dataService.getLocation();
   }
 
+
   async registerUser(fNewUser: NgForm){
+    if ( fNewUser.invalid ) { return; }
 
     const isNewUserOk = await this.userService.userRegistration(this.newUser);
 

@@ -55,20 +55,16 @@
                        required></ion-input>
           </ion-item>
 
-          <ion-item >
-            <ion-label>Municipio</ion-label>
-            <ion-input name="municipio"
-                       type="text"
-                       [(ngModel)]="newUser.municipio"
-                       required></ion-input>
+
+          <ion-item>
+            <ion-label position="floating">Municipio</ion-label>
+            <ion-select  [(ngModel)]="newUser.municipio"
+                         [ngModelOptions]="{standalone: true}">
+              <ion-select-option  *ngFor="let m of municipios | async"> {{m.name}}</ion-select-option>
+            </ion-select>
           </ion-item>
 
         </ion-list>
-
-        <ion-item color="light">
-          <ion-label>Acepto la politica de privacidad</ion-label>
-          <ion-checkbox slot="start" required></ion-checkbox>
-        </ion-item>
 
         <ion-button type="submit" expand="block"  shape="round" >
           Registrarse

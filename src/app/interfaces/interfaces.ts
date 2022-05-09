@@ -13,6 +13,8 @@ export interface Incidencia {
   coordinates?: string;
   state?: string;
   title?: string;
+  municipio?: string;
+  support?: string;
 }
 
 export interface Usuario {
@@ -25,3 +27,12 @@ export interface Usuario {
   municipio?: string;
 }
 
+export interface Municipio {
+  name: string;
+}
+
+export interface Menu {
+  icon: string;
+  name: string;
+  redirectTo: string;
+}

@@ -1,0 +1,62 @@
+[
+  {
+     "icon": "american-football-outline",
+     "name": "Incidencias",
+     "redirectTo": "/incidencias"
+   },
+   {
+     "icon": "logo-apple-appstore",
+     "name": "Nueva Incidencia",
+     "redirectTo": "/crear-inciencia"
+   },
+   {
+     "icon": "beaker-outline",
+     "name": "Mi Perfil",
+     "redirectTo": "/usuario"
+   },
+   {
+     "icon": "radio-button-off-outline",
+     "name": "Buttons",
+     "redirectTo": "/button"
+   },
+   {
+     "icon": "card-outline",
+     "name": "Cards",
+     "redirectTo": "/card"
+   },
+   {
+     "icon": "checkmark-circle-outline",
+     "name": "CheckBox",
+     "redirectTo": "/check"
+   },
+   {
+     "icon": "calendar-outline",
+     "name": "Date Time",
+     "redirectTo": "/date-time"
+   },
+   {
+     "icon": "car-outline",
+     "name": "Fab",
+     "redirectTo": "/fab"
+   },
+   {
+     "icon": "grid-outline",
+     "name": "Grid",
+     "redirectTo": "/grid"
+   },
+   {
+     "icon": "infinite-outline",
+     "name": "Scroll Infinite",
+     "redirectTo": "/infinite"
+   },
+   {
+     "icon": "hammer-outline",
+     "name": "Input",
+     "redirectTo": "/input"
+   },
+   {
+     "icon": "list-outline",
+     "name": "List Sliding",
+     "redirectTo": "/list"
+   }
+]
