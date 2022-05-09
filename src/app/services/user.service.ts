@@ -78,6 +78,7 @@ export class UserService {
     return {...this.user};
   }
 
+  //Validation token
   async isTokenOk(): Promise<boolean>{
 
     await this.loadCredentials();
@@ -97,7 +98,7 @@ export class UserService {
         // eslint-disable-next-line @typescript-eslint/dot-notation
         if (response['ok']) {
           // eslint-disable-next-line @typescript-eslint/dot-notation
-          this.user = response['user'];
+          this.user = response['usuario'];
           resolve(true);
         }else{
           this.navController.navigateRoot('/login');

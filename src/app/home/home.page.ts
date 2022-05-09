@@ -10,6 +10,7 @@ import { UserService } from '../services/user.service';
 export class HomePage implements OnInit{
 
    dataUser: Usuario = {
+     email: 'oola@gmail.com'
    };
 
   constructor(private userService: UserService ) {

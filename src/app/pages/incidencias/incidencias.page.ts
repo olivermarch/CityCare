@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Incidencia } from 'src/app/interfaces/interfaces';
+import { Incidencia, Usuario } from 'src/app/interfaces/interfaces';
 import { IncidenciasService } from '../../services/incidencias.service';
 import { NavController } from '@ionic/angular';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-incidencias',
@@ -11,8 +12,13 @@ import { NavController } from '@ionic/angular';
 export class IncidenciasPage implements OnInit {
 
   incidencias: Incidencia[] = [];
+  dataUser: Usuario = {
+  };
 
-  constructor(private incidenciasService: IncidenciasService) {
+
+  constructor(
+    private incidenciasService: IncidenciasService,
+    private userService: UserService) {
 
    }
 
@@ -22,6 +28,9 @@ export class IncidenciasPage implements OnInit {
        console.log(response);
        this.incidencias.push(...response.incidencias);
     });
+    this.dataUser = this.userService.getUser();
+    console.log(this.dataUser);
+
   }
 
 

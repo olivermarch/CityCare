@@ -6,11 +6,12 @@ import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserGuard implements CanActivate, CanLoad  {
+export class UserGuard implements CanLoad  {
 
   constructor(
     private userService: UserService,
   ){}
+
   canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
     return this.userService.isTokenOk();
@@ -18,5 +19,6 @@ export class UserGuard implements CanActivate, CanLoad  {
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return true;
   }
+
 
 }
