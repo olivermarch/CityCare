@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { Municipio } from 'src/app/interfaces/interfaces';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class CrearIncidenciaPage implements OnInit {
   constructor(
     private incidenciaService: IncidenciasService,
     private navController: NavController,
-    private dataService: DataService
+    private dataService: DataService,
+    private geolocation: Geolocation
   ) { }
 
   ngOnInit() {
@@ -42,6 +44,20 @@ export class CrearIncidenciaPage implements OnInit {
         this.incidencia.coordinates = null;
         return;
     }
+    this.loadingGPS = true;
+
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      // resp.coords.longitude
+      this.loadingGPS = false;
+      const coordinates = `${resp.coords.latitude},${resp.coords.longitude}`;
+      console.log(coordinates);
+      this.incidencia.coordinates = coordinates;
+
+     }).catch((error) => {
+       console.log('Error getting location', error);
+       this.loadingGPS = false;
+     });
     console.log(this.incidencia);
   }
 

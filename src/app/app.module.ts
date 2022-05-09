@@ -9,13 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserGuard } from './services/user.guard';
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot() ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, UserGuard],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, UserGuard, Geolocation],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

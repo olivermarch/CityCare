@@ -40,7 +40,7 @@
                 (click)="createNewIncident()"
                 expand="block"
                 shape=""
-                [disabled]="incidencia.title.length < 1"
+                [disabled]="incidencia.title.length < 1 || loadingGPS"
                 color="secondary">
       Crear Incidencia
     </ion-button>
