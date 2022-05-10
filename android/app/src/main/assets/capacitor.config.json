@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "citycare",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
