@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { Municipio } from 'src/app/interfaces/interfaces';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class CrearIncidenciaPage implements OnInit {
     private incidenciaService: IncidenciasService,
     private navController: NavController,
     private dataService: DataService,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
   ) { }
 
   ngOnInit() {
@@ -60,6 +61,18 @@ export class CrearIncidenciaPage implements OnInit {
      });
     console.log(this.incidencia);
   }
+
+
+  // const takePicture = async () => {
+  //   const image = await Camera.getPhoto({
+  //     quality: 90,
+  //     allowEditing: true,
+  //     resultType: CameraResultType.Uri
+  //   });
+  //   var imageUrl = image.webPath;
+  //   // Can be set to the src of an image now
+  //   imageElement.src = imageUrl;
+  // };
 
   createNewIncident(){
     console.log(this.incidencia);

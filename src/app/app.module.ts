@@ -12,6 +12,7 @@ import { UserGuard } from './services/user.guard';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
