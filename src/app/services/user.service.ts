@@ -111,4 +111,11 @@ export class UserService {
   async loadCredentials(){
     this.token = await this.storage.get('token') || null;
   }
+
+  logOut(){
+    this.token = null;
+    this.user = null;
+    this.storage.clear();
+    this.navController.navigateRoot('/login', {animated: true});
+  }
 }

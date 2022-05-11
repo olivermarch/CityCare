@@ -30,6 +30,11 @@ const routes: Routes = [
     path: 'crear-incidencia',
     loadChildren: () => import('./pages/crear-incidencia/crear-incidencia.module').then( m => m.CrearIncidenciaPageModule),
     canLoad: [UserGuard]
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule),
+    canLoad: [UserGuard]
   }
 ];
 

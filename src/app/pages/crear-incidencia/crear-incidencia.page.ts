@@ -5,19 +5,24 @@ import { Observable } from 'rxjs';
 import { DataService } from '../../services/data.service';
 import { Municipio } from 'src/app/interfaces/interfaces';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
-import { Camera, CameraResultType, CameraSource, Photo  } from '@capacitor/camera';
 import { Directory, Filesystem } from '@capacitor/filesystem';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserService } from 'src/app/services/user.service';
+import { finalize } from 'rxjs/operators';
+import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 
 
 
-declare let window: any;
 const IMAGE_DIR = 'store-images';
 
 interface LocalFile {
   name: string;
   path: string;
   data: string;
+  up: string;
 }
+
+declare let window: any;
 @Component({
   selector: 'app-crear-incidencia',
   templateUrl: './crear-incidencia.page.html',
@@ -26,11 +31,13 @@ interface LocalFile {
 
 export class CrearIncidenciaPage implements OnInit {
 
+ // temporalImages: string[] = [];
+
   images: LocalFile[] = [];
 
   loadingGPS = false;
   municipios: Observable<Municipio[]>;
-  temporalImages: string[] = [];
+
 
   incidencia = {
     mensaje: '',
@@ -46,11 +53,13 @@ export class CrearIncidenciaPage implements OnInit {
     private dataService: DataService,
     private geolocation: Geolocation,
     private platform: Platform,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private httpClient: HttpClient,
+    private user: UserService
   ) { }
 
   ngOnInit() {
-    this.loadFiles();
+    //this.loadFiles();
     this.municipios = this.dataService.getLocation();
   }
 
@@ -132,9 +141,9 @@ export class CrearIncidenciaPage implements OnInit {
 
     async createNewIncident(){
 
-    const creado = await this.incidenciaService.postIncidencia( this.incidencia );
 
-    this.temporalImages = [];
+    const creat = await this.incidenciaService.postIncidencia( this.incidencia );
+
 
     this.incidencia = {
       mensaje: '',
@@ -144,7 +153,7 @@ export class CrearIncidenciaPage implements OnInit {
       toggle: false
     };
 
-    this.incidenciaService.postIncidencia(this.incidencia);
+    //this.incidenciaService.postIncidencia(this.incidencia);
     this.navController.navigateRoot('/incidencias', {animated: true});
   }
 
@@ -155,8 +164,11 @@ export class CrearIncidenciaPage implements OnInit {
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera
     });
+
+
+
     //photo info
-    console.log(image);
+    console.log('HOLA: ', image.dataUrl);
     if(image){
       this.saveImage(image);
     }
@@ -209,7 +221,7 @@ export class CrearIncidenciaPage implements OnInit {
     }
 }
 
-  // Helper function
+
   convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
     const reader = new FileReader(); //esto puede estar mal los ()
     reader.onerror = reject;
@@ -258,12 +270,79 @@ export class CrearIncidenciaPage implements OnInit {
       });
       console.log('READ: ', readFile);
 
+
       this.images.push({
         name: file,
         path: filePath,
         data: `data:image/jpeg;base64,${readFile.data}`,
+        up: readFile.data,
       });
+      console.log(readFile);
+      //aqui tengo el dato bueno
+      //console.log(this..);
+      //this.subirya(readFile.data);
     }
+  }
+
+  async deleteImage(file: LocalFile){
+  await Filesystem.deleteFile({
+    directory: Directory.Data,
+    path: file.path
+  });
+  this.loadFiles();
+  }
+
+  async uploadFile(file: LocalFile){
+    const response = await fetch(file.data);
+    const blob= await response.blob();
+
+    const formData = new FormData();
+    formData.append('file', blob, file.name);
+    this.uploadData(formData);
+  }
+
+  async uploadData(formData: FormData){
+
+    const loading = await this.loadingController.create({
+      message: 'Subiendo imagen...',
+    });
+    await loading.present();
+
+    const headers = new HttpHeaders({
+      'x-token': this.user.token
+    });
+
+    this.httpClient.post(`${URL}/incidencia/upload`, formData, {headers}).pipe(
+      finalize(() => {
+          loading.dismiss();
+      })
+  )
+  .subscribe(res => {
+      console.log(res);
+  });
+
+  }
+
+  async subirya(datos: string){
+
+    const loading = await this.loadingController.create({
+      message: 'Subiendo imagen...',
+    });
+    await loading.present();
+
+    const headers = new HttpHeaders({
+      'x-token': this.user.token
+    });
+
+    this.httpClient.post(`${URL}/incidencia/upload`, datos, {headers}).pipe(
+      finalize(() => {
+          loading.dismiss();
+      })
+  )
+  .subscribe(res => {
+      console.log(res);
+  });
+
   }
 
 

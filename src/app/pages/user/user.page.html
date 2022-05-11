@@ -1,0 +1,29 @@
+<app-header titulo="Mi perfil"></app-header>
+
+
+
+<ion-content class="ion-padding" id="container" color="light">
+
+  <h1>Tus Datos de Perfil</h1>
+
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Nombre: {{dataUser.nombre}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Apellidos: {{dataUser.apellidos}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Correo: {{dataUser.email}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Municipio: {{dataUser.municipio}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button (click)="logout()" expand="block" color="danger" shape="round">
+    Cerrar Sesión
+  </ion-button>
+
+</ion-content>

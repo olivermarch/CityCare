@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { RespuestaIncidencias } from '../interfaces/interfaces';
 import { UserService } from './user.service';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
+//import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 
 const URL = environment.url;
 
@@ -14,7 +14,10 @@ export class IncidenciasService {
 
   page = 0;
 
-  constructor( private httpClient: HttpClient, private user: UserService, private fileTransfer: FileTransfer) { }
+  ruta: string[];
+  rutafinal: string;
+
+  constructor( private httpClient: HttpClient, private user: UserService) { }
 
   getIncidencias(){
     this.page ++;
@@ -37,25 +40,25 @@ export class IncidenciasService {
     });
   }
 
-  uploadFile(file: string){
+  // uploadFile(file: string){
 
-   // const saveFile = FileSystem
+  //   console.log('me gaadfaf');
 
-    const fileOptions: FileUploadOptions = {
+  //   const fileOptions: FileUploadOptions = {
+  //     fileKey: 'image',
+  //     headers: {'x-token': this.user.token}
+  //   };
 
-      fileKey: 'image',
-      headers: {'x-token': this.user.token}
+  //   const fileTransfer: FileTransferObject = this.fileTransfer.create();
 
-    };
+  //   fileTransfer.upload(file, `${URL}/incidencia/upload`, fileOptions).then( data => {
+  //     console.log(data);
+  //   }).catch(err => {
+  //     console.log('Failed to upload', err);
+  //   });
+  // };
 
-    const fileTransfer: FileTransferObject = this.fileTransfer.create();
 
-    fileTransfer.upload(file, `${URL}/incidencia/upload`, fileOptions).then( data => {
-      console.log(data);
-    }).catch(err => {
-      console.log('Failed to upload', err);
-    });
-  };
 
 
 }

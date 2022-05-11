@@ -37,6 +37,8 @@
     "@ionic/pwa-elements": "^3.1.1",
     "@ionic/storage-angular": "^3.0.6",
     "cordova-plugin-camera": "^6.0.0",
+    "cordova-plugin-file": "^7.0.0",
+    "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "^4.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

@@ -25,9 +25,9 @@ export class IncidenciasPage implements OnInit {
   ngOnInit() {
 
     this.incidenciasService.getIncidencias().subscribe( response => {
-
-       this.incidencias.push(...response.incidencias);
+      this.incidencias.push(...response.incidencias);
     });
+
     this.dataUser = this.userService.getUser();
 
   }
