@@ -6,7 +6,26 @@
 
     <h1>Nueva incidencia</h1>
 
+
     <ion-list>
+      <ion-item>
+        <ion-label>Saca una foto</ion-label>
+        <ion-button (click)="selectImageFromCamera()" expand=""  shape="round" size="small">
+          <ion-icon size="small"
+                    slot="icon-only"
+                    name="camera"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Obtenerla de la galería</ion-label>
+        <ion-button (click)="selectImageFromDevice()" expand=""  shape="round" size="small">
+          <ion-icon size="small"
+                    slot="icon-only"
+                    name="camera"></ion-icon>
+        </ion-button>
+      </ion-item>
+
       <ion-item>
         <ion-label position="floating">Titulo</ion-label>
         <ion-input type="text" [(ngModel)]="incidencia.title" ></ion-input>
@@ -36,6 +55,20 @@
 
     </ion-list>
 
+    <ion-row>
+      <ion-col size="3" ></ion-col>
+      <ion-card *ngFor="let m of images">
+        <img [src]="m.data | imgSanitizer" >
+      </ion-card>
+    </ion-row>
+
+
+
+  </div>
+
+</ion-content>
+
+<ion-footer color="transparent">
     <ion-button
                 (click)="createNewIncident()"
                 expand="block"
@@ -44,7 +77,4 @@
                 color="secondary">
       Crear Incidencia
     </ion-button>
-
-  </div>
-
-</ion-content>
+</ion-footer>

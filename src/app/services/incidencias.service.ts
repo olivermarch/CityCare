@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { RespuestaIncidencias } from '../interfaces/interfaces';
 import { UserService } from './user.service';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 
 const URL = environment.url;
 
@@ -13,7 +14,7 @@ export class IncidenciasService {
 
   page = 0;
 
-  constructor( private httpClient: HttpClient, private user: UserService) { }
+  constructor( private httpClient: HttpClient, private user: UserService, private fileTransfer: FileTransfer) { }
 
   getIncidencias(){
     this.page ++;
@@ -35,6 +36,26 @@ export class IncidenciasService {
       console.log(headers);
     });
   }
+
+  uploadFile(file: string){
+
+   // const saveFile = FileSystem
+
+    const fileOptions: FileUploadOptions = {
+
+      fileKey: 'image',
+      headers: {'x-token': this.user.token}
+
+    };
+
+    const fileTransfer: FileTransferObject = this.fileTransfer.create();
+
+    fileTransfer.upload(file, `${URL}/incidencia/upload`, fileOptions).then( data => {
+      console.log(data);
+    }).catch(err => {
+      console.log('Failed to upload', err);
+    });
+  };
 
 
 }

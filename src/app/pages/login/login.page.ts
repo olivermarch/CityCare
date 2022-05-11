@@ -69,4 +69,9 @@ async showRegistrationPage(){
   });
   await modal.present();
 }
+
+entra(){
+  this.navigatorControler.navigateRoot('/home');
+}
+
 }

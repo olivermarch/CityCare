@@ -8,6 +8,7 @@ import { CrearIncidenciaPageRoutingModule } from './crear-incidencia-routing.mod
 
 import { CrearIncidenciaPage } from './crear-incidencia.page';
 import { ComponentsModule } from '../../components/components.module';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     CrearIncidenciaPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [CrearIncidenciaPage]
 })

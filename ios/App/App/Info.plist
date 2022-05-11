@@ -50,5 +50,19 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+    <key>NSCameraUsageDescription</key>
+    <string>To capture images</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>To add images</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>To store images</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>To capture your gps</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>To capture your gps</string>
+    <key>NSLocationUsageDescription</key>
+    <string>To capture your gps</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>To capture your gps</string>
 </dict>
 </plist>
