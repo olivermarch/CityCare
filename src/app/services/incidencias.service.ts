@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { RespuestaIncidencias } from '../interfaces/interfaces';
+import { RespuestaIncidencias, Usuario } from '../interfaces/interfaces';
 import { UserService } from './user.service';
 //import { FileTransfer, FileUploadOptions, FileTransferObject } from '@awesome-cordova-plugins/file-transfer/ngx';
 
@@ -19,11 +19,15 @@ export class IncidenciasService {
 
   constructor( private httpClient: HttpClient, private user: UserService) { }
 
-  getIncidencias(){
-    this.page ++;
-    return this.httpClient.get<RespuestaIncidencias>(`${URL}/incidencia/?page=${this.page}`);
-  }
+    getIncidencias(){
+      this.page ++;
+      return this.httpClient.get<RespuestaIncidencias>(`${URL}/incidencia/?page=${this.page}`);
+    }
 
+    getIncidenciasByUser(userId){
+
+      return this.httpClient.get<RespuestaIncidencias>(`${URL}/incidencia/usuario?user=${userId}`);
+    }
 
 
   postIncidencia(incidencia){

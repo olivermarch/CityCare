@@ -12,36 +12,54 @@ import { IncidenciasService } from '../services/incidencias.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-
+  dataUser: Usuario = {
+    nombre: 'Pedro'
+  };
   menu: Observable<Menu[]>;
   incidencias: Incidencia[] = [];
 
-   dataUser: Usuario = {
-     email: 'oola@gmail.com'
-   };
 
   constructor(
     private userService: UserService,
     private menuController: MenuController,
     private dataService: DataService,
     private incidenciasService: IncidenciasService,
-    private navController: NavController,
     ) {
 
   }
 
-
   ngOnInit(){
     this.dataUser = this.userService.getUser();
     this.menu = this.dataService.getMenu();
-    this.incidenciasService.getIncidencias().subscribe( response => {
-      this.incidencias.push(...response.incidencias);
-    });
+    console.log(this.dataUser);
 
+    //  // eslint-disable-next-line no-underscore-dangle
+    //  this.incidenciasService.getIncidenciasByUser(this.dataUser._id).subscribe( response => {
+    //     this.incidencias.push(...response.incidencias);
+    //     });
   }
+
+
   showMenu(){
     this.menuController.open('first');
   }
+
+  refreshPage(){
+    this.dataUser = this.userService.getUser();
+    location.reload();
+    console.log('si');
+
+  }
+
+    showIncidencias(){
+    // eslint-disable-next-line no-underscore-dangle
+      this.incidenciasService.getIncidenciasByUser(this.dataUser._id).subscribe( response => {
+      this.incidencias.push(...response.incidencias);
+    });
+
+    }
+
+
 
 
 }

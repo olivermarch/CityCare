@@ -35,6 +35,11 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule),
     canLoad: [UserGuard]
+  },
+  {
+    path: 'mis-incidencias',
+    loadChildren: () => import('./pages/mis-incidencias/mis-incidencias.module').then( m => m.MisIncidenciasPageModule),
+    canLoad: [UserGuard]
   }
 ];
 

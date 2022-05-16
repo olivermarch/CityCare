@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Incidencia, Usuario } from 'src/app/interfaces/interfaces';
 import { IncidenciasService } from '../../services/incidencias.service';
-import { NavController } from '@ionic/angular';
-import { UserService } from '../../services/user.service';
+
 
 @Component({
   selector: 'app-incidencias',
@@ -17,8 +16,7 @@ export class IncidenciasPage implements OnInit {
 
 
   constructor(
-    private incidenciasService: IncidenciasService,
-    private userService: UserService) {
+    private incidenciasService: IncidenciasService,) {
 
    }
 
@@ -27,8 +25,6 @@ export class IncidenciasPage implements OnInit {
     this.incidenciasService.getIncidencias().subscribe( response => {
       this.incidencias.push(...response.incidencias);
     });
-
-    this.dataUser = this.userService.getUser();
 
   }
 

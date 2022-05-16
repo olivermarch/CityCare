@@ -1,11 +1,8 @@
 
 
-#container {
+#container h1 {
   text-align: center;
 
-
-
-  // transform: translateY(-50%);
 }
 
 #container strong {
@@ -25,12 +22,6 @@
   text-decoration: none;
 }
 
-.logo{
-  height: 10vh;
-  width: auto;
-  margin: auto;
-  display: block;
-}
 
 #container ion-item{
 
@@ -45,17 +36,5 @@
 
 }
 
-.toastRegistration{
-  text-align: center;
-}
 
-ion-footer{
-  background-color: #f4f5f8;
 
-   padding: 10px;
-   padding-bottom: 15px;
-}
-
-.buttonIncidencia{
-  margin-bottom: px;
-}

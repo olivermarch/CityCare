@@ -25,6 +25,8 @@
     </ion-item>
   </ion-list>
 
+
+
   <ion-row>
     <ion-col size="6">
 
@@ -61,6 +63,15 @@
 
     </ion-col>
   </ion-row>
+
+  <p  class="ion-padding">Si es la primera vez que llegas al Home, <br>primero refrescar y luego mostrar incidencias</p>
+  <ion-button class="ion-padding " (click)="refreshPage()" expand="block" shape="round">
+    Refrescar datos
+  </ion-button>
+  <ion-button class="ion-padding" (click)="showIncidencias()" expand="block" shape="round">
+    Mostrar Incidencias
+  </ion-button>
+
 
     <h1>Mis Incidencias</h1>
 

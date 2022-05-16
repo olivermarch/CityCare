@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserGuard } from './services/user.guard';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { HomePage } from './home/home.page';
 
 
 
@@ -17,7 +18,7 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot() ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, UserGuard, Geolocation ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, UserGuard, Geolocation, HomePage ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
